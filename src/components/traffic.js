@@ -1,31 +1,48 @@
 /** @format */
 
-import React, { useEffect } from "react";
-import useWebAnimations, { zoomIn } from "@wellyshen/use-web-animations";
+import React, { useEffect, useState, useContext } from "react";
+import useWebAnimations from "@wellyshen/use-web-animations";
 import "../App.css";
+import { ContextService } from "../context/GlobalState";
+
 const Traffic = () => {
-  const { ref, animate } = useWebAnimations();
+  const { getTraffic } = useContext(ContextService);
+
+  // let [direction, setDirection] = useState();
+  function right() {
+    // setDirection("right");
+    setTimeout(() => {
+      getTraffic("right");
+    }, 1900);
+    return "translate(12vw,25vh)";
+  }
+  function left() {
+    // setDirection("left");
+    setTimeout(() => {
+      getTraffic("left");
+    }, 1900);
+    return "translate(-8vw,25vh)";
+  }
+  const { ref, animate, getAnimation } = useWebAnimations();
   useEffect(() => {
-    animate({
-      keyframes: {
-        transform: [
-          "scale3d(0.1,0.1,0.1)",
-          "scale3d(0.15,0.15,0.8)",
-          `${
-            Math.floor(Math.random() * 10) <= 5
-              ? "translate(-8vw,25vh)"
-              : "translate(8vw,25vh)"
-          }`,
-        ],
-      },
+    setInterval(() => {
+      animate({
+        keyframes: {
+          transform: [
+            "scale3d(0.1,0.1,0.1)",
+            "scale3d(0.15,0.15,0.8)",
+            `${Math.floor(Math.random() * 10) <= 5 ? left() : right()}`,
+          ],
+        },
 
-      animationOptions: {
-        duration: 800,
-        fill: "both",
-      },
-    });
-  });
-
+        animationOptions: {
+          duration: 2000,
+          fill: "both",
+        },
+      });
+      getTraffic(null);
+    }, 2100);
+  }, [animate]);
   return (
     <div>
       <img

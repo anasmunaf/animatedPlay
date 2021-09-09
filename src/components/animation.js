@@ -1,14 +1,17 @@
 /** @format */
-import React from "react";
+import React, { useEffect } from "react";
 import Cars from "./cars";
 import Traffic from "./traffic";
+import { ContextAnime } from "../context/GlobalState";
 
 const Animation = () => {
   return (
-    <div>
-      <Cars />
-      <Traffic />
-    </div>
+    <ContextAnime>
+      <div>
+        <Cars />
+        <Traffic />
+      </div>
+    </ContextAnime>
   );
 };
 
