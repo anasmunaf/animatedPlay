@@ -24,6 +24,9 @@ const Traffic = () => {
     return "translate(-8vw,25vh)";
   }
   const { ref, animate, getAnimation } = useWebAnimations();
+  window.onload = () => {
+    getAnimation().pause();
+  };
   useEffect(() => {
     setInterval(() => {
       animate({

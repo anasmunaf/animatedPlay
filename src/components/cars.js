@@ -5,7 +5,7 @@ import useWebAnimations from "@wellyshen/use-web-animations";
 import { ContextService } from "../context/GlobalState";
 
 const Cars = () => {
-  const { getPlayer } = useContext(ContextService);
+  const { getPlayer, CarAnimation } = useContext(ContextService);
   const { ref, animate, getAnimation } = useWebAnimations({
     keyframes: {
       transform: ["translate(50vw,85vh)"],
@@ -14,7 +14,9 @@ const Cars = () => {
       fill: "both",
     },
   });
-
+  window.onload = () => {
+    getAnimation().pause();
+  };
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") {

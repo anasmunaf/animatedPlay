@@ -16,6 +16,7 @@ export const ContextAnime = ({ children }) => {
   function getTraffic(direction) {
     dispatch({ type: "TRAFFIC", payload: direction });
   }
+
   useEffect(() => {
     if (state.player === state.traffic && state.player !== null) {
       alert("GAME OVER");
