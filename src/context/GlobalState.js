@@ -1,5 +1,6 @@
 /** @format */
 
+import { waitFor } from "@testing-library/dom";
 import React, { createContext, useReducer, useEffect } from "react";
 import AppReducer from "./AppReducer";
 const objectMotion = {
@@ -20,6 +21,7 @@ export const ContextAnime = ({ children }) => {
   useEffect(() => {
     if (state.player === state.traffic && state.player !== null) {
       alert("GAME OVER");
+
       window.location = "/";
     }
   }, [state]);

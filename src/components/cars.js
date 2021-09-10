@@ -14,9 +14,6 @@ const Cars = () => {
       fill: "both",
     },
   });
-  window.onload = () => {
-    getAnimation().pause();
-  };
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") {

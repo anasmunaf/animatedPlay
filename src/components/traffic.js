@@ -1,5 +1,5 @@
 /** @format */
-
+import { waitFor } from "@testing-library/dom";
 import React, { useEffect, useState, useContext } from "react";
 import useWebAnimations from "@wellyshen/use-web-animations";
 import "../App.css";
@@ -13,20 +13,18 @@ const Traffic = () => {
     // setDirection("right");
     setTimeout(() => {
       getTraffic("right");
-    }, 1900);
+    }, 9900);
     return "translate(12vw,25vh)";
   }
   function left() {
     // setDirection("left");
     setTimeout(() => {
       getTraffic("left");
-    }, 1900);
+    }, 9900);
     return "translate(-8vw,25vh)";
   }
   const { ref, animate, getAnimation } = useWebAnimations();
-  window.onload = () => {
-    getAnimation().pause();
-  };
+
   useEffect(() => {
     setInterval(() => {
       animate({
@@ -39,12 +37,12 @@ const Traffic = () => {
         },
 
         animationOptions: {
-          duration: 2000,
+          duration: 10000,
           fill: "both",
         },
       });
       getTraffic(null);
-    }, 2100);
+    }, 10100);
   }, [animate]);
   return (
     <div>
