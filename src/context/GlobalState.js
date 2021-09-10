@@ -18,10 +18,11 @@ export const ContextAnime = ({ children }) => {
     dispatch({ type: "TRAFFIC", payload: direction });
   }
 
+  // console.log(state);
   useEffect(() => {
     if (state.player === state.traffic && state.player !== null) {
       alert("GAME OVER");
-
+      clearInterval();
       window.location = "/";
     }
   }, [state]);

@@ -6,13 +6,12 @@ import { ContextAnime } from "../context/GlobalState";
 import Start from "./start";
 
 const Animation = () => {
-  useEffect(() => {
-    alert("play");
-  }, []);
+  // useEffect(() => {
+  //   alert("play");
+  // }, []);
   return (
     <ContextAnime>
       <div>
-        <Start />
         <Cars />
         <Traffic />
       </div>

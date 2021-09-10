@@ -4,27 +4,17 @@ import React, { useEffect, useState, useContext } from "react";
 import useWebAnimations from "@wellyshen/use-web-animations";
 import "../App.css";
 import { ContextService } from "../context/GlobalState";
-const timeFrame = 5000;
+const timeFrame = 2000;
 const Traffic = () => {
+  const { ref, animate, getAnimation } = useWebAnimations();
   const { getTraffic } = useContext(ContextService);
 
-  // let [direction, setDirection] = useState();
-  function right() {
-    // setDirection("right");
+  function direction(pole, area) {
     setTimeout(() => {
-      getTraffic("right");
-    }, timeFrame - 0.1);
-    return "translate(12vw,25vh)";
+      getTraffic(pole);
+    }, timeFrame - 100);
+    return area;
   }
-  function left() {
-    // setDirection("left");
-    setTimeout(() => {
-      getTraffic("left");
-    }, timeFrame - 0.1);
-    return "translate(-8vw,25vh)";
-  }
-  const { ref, animate, getAnimation } = useWebAnimations();
-
   useEffect(() => {
     setInterval(() => {
       animate({
@@ -32,7 +22,11 @@ const Traffic = () => {
           transform: [
             "scale3d(0.1,0.1,0.1)",
             "scale3d(0.15,0.15,0.8)",
-            `${Math.floor(Math.random() * 10) <= 5 ? left() : right()}`,
+            `${
+              Math.floor(Math.random() * 10) <= 5
+                ? direction("left", "translate(-8vw,25vh)")
+                : direction("right", "translate(12vw,25vh)")
+            }`,
           ],
         },
 
@@ -42,8 +36,34 @@ const Traffic = () => {
         },
       });
       getTraffic(null);
-    }, timeFrame + 0.1);
+    }, timeFrame + 100);
   }, [animate]);
+
+  // function direction(pole, area) {
+  //   getTraffic(pole);
+  //   return area;
+  // }
+  // useEffect(() => {
+  //   animate({
+  //     keyframes: {
+  //       transform: [
+  //         "scale3d(0.1,0.1,0.1)",
+  //         "scale3d(0.15,0.15,0.8)",
+  //         `${
+  //           Math.floor(Math.random() * 10) <= 5
+  //             ? direction("left", "translate(-8vw,25vh)")
+  //             : direction("right", "translate(12vw,25vh)")
+  //         }`,
+  //       ],
+  //     },
+
+  //     animationOptions: {
+  //       duration: timeFrame,
+  //       fill: "both",
+  //     },
+  //   });
+  // }, [animate]);
+
   return (
     <div>
       <img
