@@ -4,7 +4,7 @@ import React, { useEffect, useState, useContext } from "react";
 import useWebAnimations from "@wellyshen/use-web-animations";
 import "../App.css";
 import { ContextService } from "../context/GlobalState";
-
+const timeFrame = 5000;
 const Traffic = () => {
   const { getTraffic } = useContext(ContextService);
 
@@ -13,14 +13,14 @@ const Traffic = () => {
     // setDirection("right");
     setTimeout(() => {
       getTraffic("right");
-    }, 9900);
+    }, timeFrame - 0.1);
     return "translate(12vw,25vh)";
   }
   function left() {
     // setDirection("left");
     setTimeout(() => {
       getTraffic("left");
-    }, 9900);
+    }, timeFrame - 0.1);
     return "translate(-8vw,25vh)";
   }
   const { ref, animate, getAnimation } = useWebAnimations();
@@ -37,12 +37,12 @@ const Traffic = () => {
         },
 
         animationOptions: {
-          duration: 10000,
+          duration: timeFrame,
           fill: "both",
         },
       });
       getTraffic(null);
-    }, 10100);
+    }, timeFrame + 0.1);
   }, [animate]);
   return (
     <div>
